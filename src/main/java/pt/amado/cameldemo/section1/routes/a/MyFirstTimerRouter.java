@@ -1,4 +1,4 @@
-package pt.amado.cameldemo.routes.a;
+package pt.amado.cameldemo.section1.routes.a;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.camel.Exchange;
@@ -30,33 +30,33 @@ public class MyFirstTimerRouter extends RouteBuilder {
                 .to("log:first-timer");
     }
 
-}
-
-@Component
-class GetCurrentTimeBean {
-    public String getCurrentTime(){
-        return String.format("Time now is %s", LocalDateTime.now());
-    }
-}
-
-@Component
-class SimpleLoggingBean {
-
-    private Logger log = LoggerFactory.getLogger(SimpleLoggingBean.class);
-
-    public void process(String message) {
-        log.info("SimpleLoggingProcessing --> {}", message);
+    @Component
+    class GetCurrentTimeBean {
+        public String getCurrentTime(){
+            return String.format("Time now is %s", LocalDateTime.now());
+        }
     }
 
-}
+    @Component
+    class SimpleLoggingBean {
 
-class SimpleProcessor implements Processor {
+        private Logger log = LoggerFactory.getLogger(SimpleLoggingBean.class);
 
-    private Logger log = LoggerFactory.getLogger(SimpleProcessor.class);
+        public void process(String message) {
+            log.info("SimpleLoggingProcessing --> {}", message);
+        }
 
-    @Override
-    public void process(Exchange exchange) throws Exception {
-        log.info("Body message : {}", exchange.getMessage().getBody());
+    }
+
+    class SimpleProcessor implements Processor {
+
+        private Logger log = LoggerFactory.getLogger(SimpleProcessor.class);
+
+        @Override
+        public void process(Exchange exchange) throws Exception {
+            log.info("Body message : {}", exchange.getMessage().getBody());
+        }
+
     }
 
 }

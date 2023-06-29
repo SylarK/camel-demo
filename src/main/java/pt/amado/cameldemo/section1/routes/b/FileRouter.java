@@ -1,9 +1,9 @@
-package pt.amado.cameldemo.routes.b;
+package pt.amado.cameldemo.section1.routes.b;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class FileRouter extends RouteBuilder {
     @Override
     public void configure() throws Exception {
