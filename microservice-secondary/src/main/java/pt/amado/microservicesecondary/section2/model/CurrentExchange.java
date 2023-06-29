@@ -1,8 +1,9 @@
-package pt.amado.microservicesecondary.section2.receiver.model;
+package pt.amado.microservicesecondary.section2.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
 
@@ -19,5 +20,9 @@ public class CurrentExchange {
     public String toString() {
         return String.format("CurrentExchange object: id:%s - from:%s - to:%s - conversionMultiple:%s",
                 getId(), getFrom(), getTo(), getConversionMultiple());
+    }
+
+    public void setConversionMultiple(BigDecimal conversionMultiple) {
+        this.conversionMultiple = conversionMultiple;
     }
 }
