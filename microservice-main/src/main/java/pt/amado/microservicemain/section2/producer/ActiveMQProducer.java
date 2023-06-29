@@ -17,5 +17,7 @@ public class ActiveMQProducer extends RouteBuilder {
         from("file:files/json")
                 .to("activemq:my-activemq-queue");
 
+        from("file:files/xml")
+                .to("activemq:my-activemq-queue-file-xml");
     }
 }

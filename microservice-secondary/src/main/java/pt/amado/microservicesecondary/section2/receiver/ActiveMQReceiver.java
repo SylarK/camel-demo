@@ -22,5 +22,11 @@ public class ActiveMQReceiver extends RouteBuilder {
                 .bean(currentExchangeProcessor)
                 .bean(currentExchangeTransformer)
                 .to("log:received-message-from-my-activemq-queue");
+
+        from("activemq:my-activemq-queue-file-xml")
+                .unmarshal()
+                .jacksonXml(CurrentExchange.class)
+                .bean(currentExchangeProcessor)
+                .to("log:received-message-from-my-activemq-queue-file-xml");
     }
 }
