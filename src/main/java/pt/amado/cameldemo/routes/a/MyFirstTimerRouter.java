@@ -1,10 +1,11 @@
 package pt.amado.cameldemo.routes.a;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 public class MyFirstTimerRouter extends RouteBuilder {
 
     private final GetCurrentTimeBean getCurrentTimeBean;
-    private final SimpleLoggingProcessingComponent simpleLoggingProcessingComponent;
+    private final SimpleLoggingBean simpleLoggingBean;
 
 
     @Override
@@ -24,7 +25,8 @@ public class MyFirstTimerRouter extends RouteBuilder {
                 .transform().constant("Constant message")
                 .log("${body}")
                 .bean(getCurrentTimeBean)
-                .bean(simpleLoggingProcessingComponent)
+                .bean(simpleLoggingBean)
+                .process(new SimpleProcessor())
                 .to("log:first-timer");
     }
 
@@ -38,12 +40,23 @@ class GetCurrentTimeBean {
 }
 
 @Component
-class SimpleLoggingProcessingComponent {
+class SimpleLoggingBean {
 
-    private Logger log = LoggerFactory.getLogger(MyFirstTimerRouter.class);
+    private Logger log = LoggerFactory.getLogger(SimpleLoggingBean.class);
 
     public void process(String message) {
         log.info("SimpleLoggingProcessing --> {}", message);
+    }
+
+}
+
+class SimpleProcessor implements Processor {
+
+    private Logger log = LoggerFactory.getLogger(SimpleProcessor.class);
+
+    @Override
+    public void process(Exchange exchange) throws Exception {
+        log.info("Body message : {}", exchange.getMessage().getBody());
     }
 
 }
