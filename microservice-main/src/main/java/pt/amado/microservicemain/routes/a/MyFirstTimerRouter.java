@@ -1,4 +1,4 @@
-package pt.amado.cameldemo.routes.a;
+package pt.amado.microservicemain.routes.a;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.camel.Exchange;
