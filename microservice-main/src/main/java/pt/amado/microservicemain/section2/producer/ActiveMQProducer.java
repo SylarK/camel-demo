@@ -3,7 +3,7 @@ package pt.amado.microservicemain.section2.producer;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class ActiveMQProducer extends RouteBuilder {
 
     @Override
@@ -19,5 +19,6 @@ public class ActiveMQProducer extends RouteBuilder {
 
         from("file:files/xml")
                 .to("activemq:my-activemq-queue-file-xml");
+
     }
 }

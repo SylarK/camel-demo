@@ -8,7 +8,7 @@ import pt.amado.microservicesecondary.section2.model.CurrentExchange;
 import pt.amado.microservicesecondary.section2.processor.CurrentExchangeProcessor;
 import pt.amado.microservicesecondary.section2.transformer.CurrentExchangeTransformer;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class ActiveMQReceiver extends RouteBuilder {
 
