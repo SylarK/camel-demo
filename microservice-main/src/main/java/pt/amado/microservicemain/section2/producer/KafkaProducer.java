@@ -3,7 +3,7 @@ package pt.amado.microservicemain.section2.producer;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class KafkaProducer extends RouteBuilder {
 
     @Override

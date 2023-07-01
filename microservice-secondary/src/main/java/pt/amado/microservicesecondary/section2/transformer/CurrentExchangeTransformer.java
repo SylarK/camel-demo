@@ -5,7 +5,7 @@ import pt.amado.microservicesecondary.section2.model.CurrentExchange;
 
 import java.math.BigDecimal;
 
-@Component
+//@Component
 public class CurrentExchangeTransformer {
 
     public void transform(CurrentExchange currentExchange) {

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import pt.amado.microservicesecondary.section2.model.CurrentExchange;
 
 @Slf4j
-@Component
+//@Component
 public class CurrentExchangeProcessor {
 
     public void processMessage(CurrentExchange currentExchange){

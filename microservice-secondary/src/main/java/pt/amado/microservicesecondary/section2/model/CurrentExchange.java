@@ -3,11 +3,11 @@ package pt.amado.microservicesecondary.section2.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 public class CurrentExchange {
 
