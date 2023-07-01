@@ -20,6 +20,14 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
+  activemq:
+    image: rmohr/activemq:latest
+    container_name: activemq
+    environment:
+      - "TZ=Europe/Amsterdam"
+    ports:
+      - "61616:61616"
+      - "8161:8161"
 
 volumes:
   zookeeper_data:

@@ -1,4 +1,4 @@
-package pt.amado.microservicemain.section2.producer;
+package pt.amado.microservicemain.section4.routes;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -7,16 +7,17 @@ import org.springframework.stereotype.Component;
 @Component
 @ConditionalOnProperty(
         value = "section.enabled",
-        havingValue = "2",
+        havingValue = "4",
         matchIfMissing = true
 )
-public class KafkaProducer extends RouteBuilder {
-
+public class FileCSVRouter extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        from("file:files/json")
-                .to("kafka:kafka-topic-sample");
-
+        // multicast
+        from("file:files/csv")
+                .multicast()
+                .routeId("File-CSV-Route")
+                .log("${body}");
     }
 }

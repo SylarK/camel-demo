@@ -1,9 +1,15 @@
 package pt.amado.microservicemain.section2.producer;
 
 import org.apache.camel.builder.RouteBuilder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
+@ConditionalOnProperty(
+        value = "section.enabled",
+        havingValue = "2",
+        matchIfMissing = true
+)
 public class ActiveMQProducer extends RouteBuilder {
 
     @Override

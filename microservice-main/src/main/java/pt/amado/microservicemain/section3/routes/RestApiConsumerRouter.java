@@ -1,9 +1,13 @@
 package pt.amado.microservicemain.section3.routes;
 
 import org.apache.camel.builder.RouteBuilder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
+@ConditionalOnExpression(
+        "${section.enabled:3}"
+)
 public class RestApiConsumerRouter extends RouteBuilder {
     @Override
     public void configure() throws Exception {

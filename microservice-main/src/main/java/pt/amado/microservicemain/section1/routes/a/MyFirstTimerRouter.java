@@ -6,11 +6,17 @@ import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-//@Component
+@Component
+@ConditionalOnProperty(
+        value = "section.enabled",
+        havingValue = "1",
+        matchIfMissing = true
+)
 @RequiredArgsConstructor
 public class MyFirstTimerRouter extends RouteBuilder {
 

@@ -7,11 +7,18 @@ import org.apache.camel.ExchangeProperties;
 import org.apache.camel.Header;
 import org.apache.camel.Headers;
 import org.apache.camel.builder.RouteBuilder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
 @Component
+@ConditionalOnProperty(
+        value = "section.enabled",
+        havingValue = "3",
+        matchIfMissing = true
+)
 @RequiredArgsConstructor
 public class FileRouter extends RouteBuilder {
 
@@ -45,6 +52,11 @@ public class FileRouter extends RouteBuilder {
 }
 
 @Component
+@ConditionalOnProperty(
+        value = "section.enabled",
+        havingValue = "3",
+        matchIfMissing = true
+)
 @Slf4j
 class DeciderBean {
 
