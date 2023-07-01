@@ -1,10 +1,22 @@
 package pt.amado.microservicemain.section3.routes;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.camel.Body;
+import org.apache.camel.ExchangeProperties;
+import org.apache.camel.Header;
+import org.apache.camel.Headers;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 @Component
+@RequiredArgsConstructor
 public class FileRouter extends RouteBuilder {
+
+    final DeciderBean deciderBean;
+
     @Override
     public void configure() throws Exception {
 
@@ -17,10 +29,11 @@ public class FileRouter extends RouteBuilder {
                         .log("XML FILE!")
                     .when(simple("${body} contains 'USD'"))
                         .log("NOT A XML FILE BUT CONTAINS USD VALUE")
+                    .when(method(deciderBean))
+                        .log("Bean called")
                     .otherwise()
                         .log("NOT A XML FILE!")
                 .end()
-                .to("direct://log-files")
                 .to("file:files/output");
 
         from("direct:log-files")
@@ -29,4 +42,20 @@ public class FileRouter extends RouteBuilder {
                 .log("${file:name} ${file:name.ext} ${file:name.noext} ${file:onlyname}")
                 .log("${routeId} ${camelId} ${body}");
     }
+}
+
+@Component
+@Slf4j
+class DeciderBean {
+
+    public boolean isValid(@Body String body,
+                           @Headers Map<String, String> headers,
+                           @Header("CamelFileAbsolutePath") String header,
+                           @ExchangeProperties Map<String, String> properties) {
+
+        log.info("{}\n{}\n{}\n{}", body, headers, header, properties);
+
+        return true;
+    }
+
 }
