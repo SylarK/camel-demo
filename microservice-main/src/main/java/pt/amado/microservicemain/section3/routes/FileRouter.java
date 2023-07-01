@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 public class FileRouter extends RouteBuilder {
     @Override
     public void configure() throws Exception {
+
         from("file:files/input")
                 .routeId("File-Choices-Route")
                 .log("${body}")
@@ -19,8 +20,13 @@ public class FileRouter extends RouteBuilder {
                     .otherwise()
                         .log("NOT A XML FILE!")
                 .end()
+                .to("direct://log-files")
+                .to("file:files/output");
+
+        from("direct:log-files")
                 .log("${messageHistory} ${file:absolute.path}")
                 .log("${header:CamelMessageTimestamp}")
-                .to("file:files/output");
+                .log("${file:name} ${file:name.ext} ${file:name.noext} ${file:onlyname}")
+                .log("${routeId} ${camelId} ${body}");
     }
 }
