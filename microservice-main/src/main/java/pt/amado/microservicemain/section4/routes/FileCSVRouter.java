@@ -34,6 +34,9 @@ public class FileCSVRouter extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
+        //getContext().setTracing(true);
+        errorHandler(deadLetterChannel("activemq:{{activemq.deadletter-queue-label}}"));
+
         // multicast
 //        from("file:files/csv")
 //                .multicast()
