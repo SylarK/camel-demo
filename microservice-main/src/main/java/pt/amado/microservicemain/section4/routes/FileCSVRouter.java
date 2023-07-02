@@ -1,20 +1,15 @@
 package pt.amado.microservicemain.section4.routes;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.Body;
 import org.apache.camel.ExchangeProperties;
-import org.apache.camel.Header;
 import org.apache.camel.Headers;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.model.dataformat.JsonLibrary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
-import pt.amado.microservicemain.section2.producer.model.CurrentExchange;
-import pt.amado.microservicemain.section4.util.ArrayListAggregationStrategy;
 
 import java.util.List;
 import java.util.Map;
