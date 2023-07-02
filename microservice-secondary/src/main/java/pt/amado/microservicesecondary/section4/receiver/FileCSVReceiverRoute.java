@@ -25,6 +25,9 @@ public class FileCSVReceiverRoute extends RouteBuilder {
 
         from("activemq:split-route")
                 .to("log:split-receiver-route-log");
+
+        from("activemq:aggregate-json-route")
+                .to("log:aggregate-json");
     }
 
 }

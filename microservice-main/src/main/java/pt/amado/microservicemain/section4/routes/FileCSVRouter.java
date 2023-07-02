@@ -1,8 +1,11 @@
 package pt.amado.microservicemain.section4.routes;
 
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.model.dataformat.JsonLibrary;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
+import pt.amado.microservicemain.section2.producer.model.CurrentExchange;
+import pt.amado.microservicemain.section4.util.ArrayListAggregationStrategy;
 
 import java.util.List;
 
@@ -13,6 +16,8 @@ import java.util.List;
         matchIfMissing = true
 )
 public class FileCSVRouter extends RouteBuilder {
+
+
     @Override
     public void configure() throws Exception {
 
@@ -33,6 +38,16 @@ public class FileCSVRouter extends RouteBuilder {
 //                //.split(method(splitComponent))
 //                .log("Message sent")
 //                .to("activemq:split-route");
+
+        //aggregate
+        from("file:files/aggregate-json")
+                .unmarshal().json(JsonLibrary.Jackson, CurrentExchange.class)
+                .aggregate(simple("${body.to}"), new ArrayListAggregationStrategy())
+                //.completionFromBatchConsumer()
+                .completionSize(3)
+                .convertBodyTo(String.class)
+                .log("Message sent")
+                .to("activemq:aggregate-json-route");
     }
 
     @Component
