@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 @AllArgsConstructor
@@ -37,5 +36,19 @@ public class User {
             firstName,
             email
         });
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
