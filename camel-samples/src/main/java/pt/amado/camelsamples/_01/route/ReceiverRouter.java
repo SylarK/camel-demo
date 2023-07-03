@@ -36,6 +36,8 @@ public class ReceiverRouter extends RouteBuilder {
     private static class AggregationStrategyUsers implements org.apache.camel.AggregationStrategy {
         @Override
         public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
+
+            @SuppressWarnings("unchecked")
             List<User> userList = oldExchange != null ? oldExchange.getIn().getBody(List.class) : new ArrayList<>();
             User newUser = newExchange.getIn().getBody(User.class);
             userList.add(newUser);
