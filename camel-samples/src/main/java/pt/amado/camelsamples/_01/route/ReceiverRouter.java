@@ -37,9 +37,8 @@ public class ReceiverRouter extends RouteBuilder {
                     .process(userTransformer::doSomething)
                 .end()
                 .bean(userTransformer , "generateResponse")
-                .to("log:logging-application")
-                .to("activemq:route-request-cc");
-
+                .to("file:files/samples-projects/_01/output");
+                //.to("activemq:route-request-cc");
 
     }
 

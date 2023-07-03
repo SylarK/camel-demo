@@ -3,12 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.14-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>pt.amado</groupId>
+        <artifactId>camel-demo</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath /> <!-- lookup parent from repository -->
     </parent>
-    <groupId>pt.amado</groupId>
+    <groupId>pt.amado.samples</groupId>
     <artifactId>camel-samples</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>camel-samples</name>
@@ -30,58 +30,6 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
-        <dependency>
-            <groupId>org.apache.camel.springboot</groupId>
-            <artifactId>camel-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel.springboot</groupId>
-            <artifactId>camel-kafka-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-activemq</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel.springboot</groupId>
-            <artifactId>camel-activemq-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel.springboot</groupId>
-            <artifactId>camel-kafka-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel.springboot</groupId>
-            <artifactId>camel-http-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel.springboot</groupId>
-            <artifactId>camel-jacksonxml-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel.springboot</groupId>
-            <artifactId>camel-jsonpath-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-management</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
